@@ -5,15 +5,15 @@ import com.learn.database.domain.Book;
 
 public class TestDataUtils {
 
-    public static Author createTestAuthor(long id, String name, int age) {
-        return Author.builder().id(id).name(name).age(age).build();
+    public static Author createTestAuthor(String name, Integer age) {
+        return Author.builder().name(name).age(age).build();
     }
 
-    public static Book createTestBook(String isbn, String title, long authorId) {
+    public static Book createTestBook(String isbn, String title, Author author) {
         return Book.builder()
                 .isbn(isbn)
                 .title(title)
-                .authorId(authorId)
+                .author(author)
                 .build();
     }
 }
