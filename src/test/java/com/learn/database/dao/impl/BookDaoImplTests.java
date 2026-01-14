@@ -2,7 +2,6 @@ package com.learn.database.dao.impl;
 
 
 import com.learn.database.TestDataUtils;
-import com.learn.database.domain.Author;
 import com.learn.database.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -70,6 +69,15 @@ public class BookDaoImplTests {
         verify(jdbcTemplate).update(
                 eq("UPDATE books SET isbn = ?, title = ?, author_id = ? WHERE isbn = ?"),
                 eq("978-1-2345-6789-0"), eq("The Shadow in the Attic"), eq(1L), eq("978-1-2345-6789-1")
+        );
+    }
+
+    @Test
+    public void testThatDeleteGeneratesCorrectSql() {
+        underTest.delete("978-1-2345-6789-0");
+
+        verify(jdbcTemplate).update(
+                eq("DELETE FROM books WHERE isbn = ?"), eq("978-1-2345-6789-0")
         );
     }
 

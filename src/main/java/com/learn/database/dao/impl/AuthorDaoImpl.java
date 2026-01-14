@@ -51,6 +51,13 @@ public class AuthorDaoImpl implements AuthorDao {
                 author.getId(), author.getName(), author.getAge(), id);
     }
 
+    @Override
+    public void delete(long id) {
+        jdbcTemplate.update(
+                    "DELETE from authors WHERE id = ?", id
+                );
+    }
+
     public static class AuthorRowMapper implements RowMapper<Author> {
 
         @Override
