@@ -1,19 +1,33 @@
 package com.learn.database;
 
-import com.learn.database.domain.Author;
-import com.learn.database.domain.Book;
+import com.learn.database.domain.dto.AuthorDto;
+import com.learn.database.domain.dto.BookDto;
+import com.learn.database.domain.entities.AuthorEntity;
+import com.learn.database.domain.entities.BookEntity;
 
 public class TestDataUtils {
 
-    public static Author createTestAuthor(String name, Integer age) {
-        return Author.builder().name(name).age(age).build();
+    public static AuthorEntity createTestAuthorEntity(String name, Integer age) {
+        return AuthorEntity.builder().name(name).age(age).build();
     }
 
-    public static Book createTestBook(String isbn, String title, Author author) {
-        return Book.builder()
+    public static BookEntity createTestBookEntity(String isbn, String title, AuthorEntity authorEntity) {
+        return BookEntity.builder()
                 .isbn(isbn)
                 .title(title)
-                .author(author)
+                .authorEntity(authorEntity)
+                .build();
+    }
+
+    public static AuthorDto createTestAuthorDto(String name, Integer age) {
+        return AuthorDto.builder().name(name).age(age).build();
+    }
+
+    public static BookDto createTestBookDto(String isbn, String title, AuthorDto authorDto) {
+        return BookDto.builder()
+                .isbn(isbn)
+                .title(title)
+                .authorDto(authorDto)
                 .build();
     }
 }
